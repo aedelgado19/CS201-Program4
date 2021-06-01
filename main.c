@@ -15,6 +15,7 @@ struct menu {
   int number_of_items;
 } m;
 
+//function prototypes
 void check_valid(char function[], int amount);
 void print_menu(struct menu);
 int parse_input(char* arg);
@@ -53,6 +54,8 @@ main(int argc, char* argv[]){
   printf("Welcome to Operations Calculator.\n");  
   struct menu m;
   m.number_of_items = 7;
+
+  //initialize struct array members
   m.choices[0] = "Exit";
   m.choices[1] = "Addition";
   m.choices[2] = "Subtraction";
@@ -82,6 +85,7 @@ main(int argc, char* argv[]){
   return 0;
 }
 
+//a function to print out the menu
 void
 print_menu(struct menu m){
   printf("Here are valid operations.\n");
@@ -93,6 +97,8 @@ print_menu(struct menu m){
   
 }
 
+// a function that checks the validity of the input
+// ex: to divide and mod, you must have at least 2 numbers
 void
 check_valid(char function[], int amount){
   if(strncmp(function, "division", 10) == 0){ //if it's a division request
@@ -111,10 +117,10 @@ check_valid(char function[], int amount){
   }
 }
 
+//a function to parse individual arrays
 int
 parse_input(char* arg){
-  //hex
-  
+  //hex:
   if((arg[0] == '0' && arg[1] == 'x') || (arg[0] == '0' && arg[1] == 'X')){
     return (int) strtol(arg, NULL, 16);
   }
