@@ -18,6 +18,7 @@ struct menu {
 void check_valid(char function[], int amount);
 void print_menu(struct menu);
 int parse_input(char* arg);
+void exit_program(int amount, int input[]);
 void add(int amount, int input[]);
 void subtract(int amount, int input[]);
 void multiply(int amount, int input[]);
@@ -25,11 +26,29 @@ void divide(int amount, int input[]);
 void mod(int amount, int input[]);
 void reverse(int amount, int input[]);
 
+//dispatch table for operations
+void (*ops[])(int amount, int input[]) = { 
+  exit_program,
+  add,
+  subtract,
+  multiply,
+  divide,
+  mod,
+  reverse
+};
 
 int
 main(int argc, char* argv[]){
-  int choice = 0;
+  int choice = 10; //some arbitrary number to initialize this variable
+  //(couldn't be 0 since that means quit the loop)
   int array[15];
+
+  //if the user doesn't enter any arguments
+  if(argc == 1){
+    printf("Please enter command line arguments.\n");
+    printf("Quitting program.\n");
+    exit(0);
+  }
   
   printf("Welcome to Operations Calculator.\n");  
   struct menu m;
@@ -41,52 +60,19 @@ main(int argc, char* argv[]){
   m.choices[4] = "Division";
   m.choices[5] = "Modulo";
   m.choices[6] = "Reverse Input";
-  print_menu(m);
 
-  scanf("%d", &choice);
+  //keep looping until the user exits the program
+  while(choice != 0){
+    print_menu(m);
+    
+    scanf("%d", &choice);
 
-  for(int i = 0; i < argc; i++){
-    array[i] = parse_input(argv[i]);
+    for(int i = 1; i < argc; i++){
+      array[i] = parse_input(argv[i]);
+    }
+
+    ops[choice](argc, array);
   }
-
-  //exit
-  if(choice == 0){
-    printf("Quitting program.\n");
-    exit(0);
-  }
-
-  //add
-  else if(choice == 1){
-    add(argc, array);
-  }
-
-  //subtract
-  else if(choice == 2){
-    subtract(argc, array);
-  }
-
-  //multiply
-  else if(choice == 3){
-    multiply(argc, array);
-  }
-
-  //divide
-  else if(choice == 4){
-    check_valid("division", argc);
-    divide(argc, array);
-  }
-
-  //modulo
-  else if(choice == 5){
-    check_valid("mod", argc);
-    mod(argc, array);
-  }
-
-  //reverse input
-  else if(choice == 6){
-    reverse(argc, array);
-  }
-
   return 0;
 }
 
@@ -97,7 +83,8 @@ print_menu(struct menu m){
   for(int i = 0; i < 7; i++){
     printf("%d: %s\n", i,  m.choices[i]);
   }
-  printf("Menu item: ");
+  printf("\nMenu item: ");
+  
 }
 
 void
@@ -123,26 +110,71 @@ parse_input(char* arg){
   return atoi(arg);
 }
 
-void add(int amount, int input[]){
-
+//exit program
+void
+exit_program(int amount, int input[]){
+  printf("Quitting program.\n");
+  exit(0);
 }
 
-void subtract(int amount, int input[]){
-
+// add values summed from left to right, print out
+void
+add(int amount, int input[]){
+  int total = 0;
+  for(int i = 1; i < amount; i++){
+    total += input[i];
+    if(i == 1){
+      printf("%d", input[1]);
+    } else {
+      printf(" + %d", input[i]);
+    }
+  }
+  printf(" = %d\n\n", total);
 }
 
-void multiply(int amount, int input[]){
-
+//subtract values from left to right, print out
+void
+subtract(int amount, int input[]){
+  int total = input[1];
+  printf("%d", input[1]);
+  for(int i = 2; i < amount; i++){
+    total -= input[i];
+    printf(" - %d", input[i]);
+  }
+  printf(" = %d\n\n", total);
 }
 
-void divide(int amount, int input[]){
-
+//multiply values from left to right, print out
+void
+multiply(int amount, int input[]){
+  int product = input[1];
+  printf("%d", input[1]);
+  for(int i = 2; i < amount; i++){
+    product *= input[i];
+    printf(" * %d", input[i]);
+  }
+  printf(" = %d\n\n", product); 
 }
 
-void mod(int amount, int input[]){
-
+//divide the first two numbers
+void
+divide(int amount, int input[]){
+  float quotient = (float) input[1] / (float) input[2];
+  printf("%d / %d =  %f\n\n", input[1], input[2], quotient);
 }
 
-void reverse(int amount, int input[]){
+//mod the first two numbers
+void
+mod(int amount, int input[]){
+  int result = input[1] % input[2];
+  printf("%d mod %d = %d\n\n", input[1], input[2], result);
+}
 
+//reverse the input
+void
+reverse(int amount, int input[]){
+  for(int i = amount-1; i > 0; i--){
+    printf("%d ", input[i]);
+  }
+  printf("\n");
 }
