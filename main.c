@@ -18,16 +18,16 @@ struct menu {
 void check_valid(char function[], int amount);
 void print_menu(struct menu);
 int parse_input(char* arg);
-void exit_program(int amount, int input[]);
-void add(int amount, int input[]);
-void subtract(int amount, int input[]);
-void multiply(int amount, int input[]);
-void divide(int amount, int input[]);
-void mod(int amount, int input[]);
-void reverse(int amount, int input[]);
+void exit_program(int amount, int input[], char* original_args[]);
+void add(int amount, int input[], char* original_args[]);
+void subtract(int amount, int input[], char* original_args[]);
+void multiply(int amount, int input[], char* original_args[]);
+void divide(int amount, int input[], char* original_args[]);
+void mod(int amount, int input[], char* original_args[]);
+void reverse(int amount, int input[], char* original_args[]);
 
 //dispatch table for operations
-void (*ops[])(int amount, int input[]) = { 
+void (*ops[])(int amount, int input[], char* original_args[]) = { 
   exit_program,
   add,
   subtract,
@@ -71,7 +71,7 @@ main(int argc, char* argv[]){
       array[i] = parse_input(argv[i]);
     }
 
-    ops[choice](argc, array);
+    ops[choice](argc, array, argv);
   }
   return 0;
 }
@@ -112,14 +112,14 @@ parse_input(char* arg){
 
 //exit program
 void
-exit_program(int amount, int input[]){
+exit_program(int amount, int input[], char* original_args[]){
   printf("Quitting program.\n");
   exit(0);
 }
 
 // add values summed from left to right, print out
 void
-add(int amount, int input[]){
+add(int amount, int input[], char* original_args[]){
   int total = 0;
   for(int i = 1; i < amount; i++){
     total += input[i];
@@ -134,7 +134,7 @@ add(int amount, int input[]){
 
 //subtract values from left to right, print out
 void
-subtract(int amount, int input[]){
+subtract(int amount, int input[], char* original_args[]){
   int total = input[1];
   printf("%d", input[1]);
   for(int i = 2; i < amount; i++){
@@ -146,7 +146,7 @@ subtract(int amount, int input[]){
 
 //multiply values from left to right, print out
 void
-multiply(int amount, int input[]){
+multiply(int amount, int input[], char* original_args[]){
   int product = input[1];
   printf("%d", input[1]);
   for(int i = 2; i < amount; i++){
@@ -158,23 +158,26 @@ multiply(int amount, int input[]){
 
 //divide the first two numbers
 void
-divide(int amount, int input[]){
+divide(int amount, int input[], char* original_args[]){
   float quotient = (float) input[1] / (float) input[2];
   printf("%d / %d =  %f\n\n", input[1], input[2], quotient);
 }
 
 //mod the first two numbers
 void
-mod(int amount, int input[]){
+mod(int amount, int input[], char* original_args[]){
   int result = input[1] % input[2];
   printf("%d mod %d = %d\n\n", input[1], input[2], result);
 }
 
 //reverse the input
 void
-reverse(int amount, int input[]){
+reverse(int amount, int input[], char* original_args[]){
   for(int i = amount-1; i > 0; i--){
-    printf("%d ", input[i]);
+    for(int j = strlen(original_args[i])-1; j >= 0; j--){
+      printf("%c", original_args[i][j]);
+    }
+    printf(" ");
   }
   printf("\n");
 }
