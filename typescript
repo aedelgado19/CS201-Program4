@@ -1,0 +1,109 @@
+Script started on Tue Jun  1 01:41:06 2021
+[1m[7m%[27m[1m[0m                                                                              ]7;file://Allys-MacBook-Air-2.local/Users/ally/PSU-CS201/hw4[0m[27m[24m[Jally@Allys-MacBook-Air-2 hw4 % [K[?2004hexit./main 0x10 4[?2004l
+Welcome to Operations Calculator.
+Here are valid operations.
+To select one, type its corresponding number.
+0: Exit
+1: Addition
+2: Subtraction
+3: Multiplication
+4: Division
+5: Modulo
+6: Reverse Input
+
+Menu item: 0
+Quitting program.
+[1m[7m%[27m[1m[0m                                                                              ]7;file://Allys-MacBook-Air-2.local/Users/ally/PSU-CS201/hw4[0m[27m[24m[Jally@Allys-MacBook-Air-2 hw4 % [K[?2004h./main 0x10 4[?2004l
+Welcome to Operations Calculator.
+Here are valid operations.
+To select one, type its corresponding number.
+0: Exit
+1: Addition
+2: Subtraction
+3: Multiplication
+4: Division
+5: Modulo
+6: Reverse Input
+
+Menu item: 1
+16 + 4 = 20
+
+Here are valid operations.
+To select one, type its corresponding number.
+0: Exit
+1: Addition
+2: Subtraction
+3: Multiplication
+4: Division
+5: Modulo
+6: Reverse Input
+
+Menu item: 2
+16 - 4 = 12
+
+Here are valid operations.
+To select one, type its corresponding number.
+0: Exit
+1: Addition
+2: Subtraction
+3: Multiplication
+4: Division
+5: Modulo
+6: Reverse Input
+
+Menu item: 3
+16 * 4 = 64
+
+Here are valid operations.
+To select one, type its corresponding number.
+0: Exit
+1: Addition
+2: Subtraction
+3: Multiplication
+4: Division
+5: Modulo
+6: Reverse Input
+
+Menu item: 4
+16 / 4 =  4.000000
+
+Here are valid operations.
+To select one, type its corresponding number.
+0: Exit
+1: Addition
+2: Subtraction
+3: Multiplication
+4: Division
+5: Modulo
+6: Reverse Input
+
+Menu item: 5
+16 mod 4 = 0
+
+Here are valid operations.
+To select one, type its corresponding number.
+0: Exit
+1: Addition
+2: Subtraction
+3: Multiplication
+4: Division
+5: Modulo
+6: Reverse Input
+
+Menu item: 6
+4 01x0 
+Here are valid operations.
+To select one, type its corresponding number.
+0: Exit
+1: Addition
+2: Subtraction
+3: Multiplication
+4: Division
+5: Modulo
+6: Reverse Input
+
+Menu item: 7
+Invalid selection. Try again.
+[1m[7m%[27m[1m[0m                                                                              ]7;file://Allys-MacBook-Air-2.local/Users/ally/PSU-CS201/hw4[0m[27m[24m[Jally@Allys-MacBook-Air-2 hw4 % [K[?2004heexit[?2004l
+
+Script done on Tue Jun  1 01:41:26 2021

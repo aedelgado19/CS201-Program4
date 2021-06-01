@@ -67,6 +67,12 @@ main(int argc, char* argv[]){
     
     scanf("%d", &choice);
 
+    //bad input:
+    if(choice < 0 || choice > 6){
+      printf("Invalid selection. Try again.\n");
+      exit(0);
+    }
+    
     for(int i = 1; i < argc; i++){
       array[i] = parse_input(argv[i]);
     }
@@ -107,6 +113,11 @@ check_valid(char function[], int amount){
 
 int
 parse_input(char* arg){
+  //hex
+  
+  if((arg[0] == '0' && arg[1] == 'x') || (arg[0] == '0' && arg[1] == 'X')){
+    return (int) strtol(arg, NULL, 16);
+  }
   return atoi(arg);
 }
 
